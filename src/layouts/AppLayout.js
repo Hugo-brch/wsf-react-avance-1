@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Button from "../components/Button";
 
-export default function AppLayout({ theme }) {
-  const [notifCount, setNotifCount] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/notifications")
-      .then((response) => response.json())
-      .then((data) => setNotifCount(data.length));
-  }, []);
+export default function AppLayout({ theme, notifCount }) {
 
   return (
     <div>

@@ -6,6 +6,9 @@ import AppLayout from "./layouts/AppLayout";
 import NotificationView from "./views/NotificationView";
 
 function App() {
+
+  //-------gestion theme
+  
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   function toggleTheme() {
@@ -17,6 +20,47 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+
+//--------notification
+
+const [notifs, setNotifs] = useState([]);
+
+  function deleteNotif() {
+    fetch("http://localhost:5000/notifications/" + this.id, {
+      method: "DELETE",
+    }).then(
+      (response) =>
+        response.status === 200 &&
+        setNotifs(notifs.filter((notif) => notif.id !== this.id))
+    );
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:5000/notifications")
+      .then((response) => response.json())
+      .then(setNotifs);
+  }, []);
+
+
+  function addNotif(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    fetch("http://localhost:5000/notifications", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((newNotif) => setNotifs([...notifs, newNotif]));
+  }
+
+
+
+
   return (
     <div
       className="App"
@@ -27,7 +71,7 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AppLayout theme={theme} />}>
+          <Route path="/" element={<AppLayout theme={theme} notifCount={notifs.length} />}>
             <Route path="/" element={<h1>Coucou Home</h1>} />
             <Route
               path="/buttons"
@@ -35,7 +79,7 @@ function App() {
             />
             <Route
               path="/notifications"
-              element={<NotificationView theme={theme} />}
+              element={<NotificationView theme={theme} notifs={notifs} addNotif={addNotif} deleteNotif={deleteNotif} />}
             />
           </Route>
         </Routes>
