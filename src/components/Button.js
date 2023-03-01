@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 function Button({
-  theme,
   color,
   variant = "default",
   title,
@@ -10,6 +10,7 @@ function Button({
   component: Component = "button",
   ...rest
 }) {
+  const{ theme } = useContext(ThemeContext);
   const style = {
     backgroundColor: color ?? (theme === "light" ? "grey" : "white"),
     color: theme === "light" ? "white" : "black",

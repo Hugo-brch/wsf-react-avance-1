@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../components/Button";
+import { ThemeContext } from "../contexts/ThemeContext";
 
-export default function ButtonView({ theme, toggleTheme }) {
+export default function ButtonView() {
+  const{ theme, toggleTheme } = useContext(ThemeContext);
   const buttons = [
     {
-      theme,
       color: "red",
       component: "a",
       variant: "squared",
@@ -12,14 +13,12 @@ export default function ButtonView({ theme, toggleTheme }) {
       onClick: () => console.log("Click Me"),
     },
     {
-      theme,
       color: "blue",
       variant: "rounded",
       title: "Click Round",
       onClick: () => console.log("Click Round"),
     },
     {
-      theme,
       color: "magenta",
       title: "Click Magenta",
       disabled: true,
@@ -28,7 +27,6 @@ export default function ButtonView({ theme, toggleTheme }) {
       onClick: () => console.log("Click Magenta"),
     },
     {
-      theme,
       variant: "rounded",
       title: "",
       onClick: toggleTheme,
