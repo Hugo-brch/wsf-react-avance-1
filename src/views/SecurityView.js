@@ -9,8 +9,9 @@ export default function SecurityView() {
   const pathname = state?.to ?? "/";
 
   useEffect(() => {
+    // eslint-disable-next-line eqeqeq
     if (user != false) return navigate("/");
-  }, [user]);
+  }, [user, navigate]);
 
   if (user !== false) return <></>;
 

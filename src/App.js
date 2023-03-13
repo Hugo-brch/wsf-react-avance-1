@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import ButtonView from "./views/ButtonView";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
@@ -9,6 +9,7 @@ import NotificationProvider from "./contexts/NotificationContext";
 import AuthProvider from "./contexts/AuthContext";
 import SecurityView from "./views/SecurityView";
 import PrivateRoute from "./components/PrivateRoute";
+import FormView from "./views/FormView";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -26,6 +27,32 @@ function App() {
           <NotificationProvider>
             <Routes>
               <Route path="/security" element={<SecurityView />} />
+              <Route path="/form" element={<FormView />} />
+              <Route
+                path="/form-init"
+                element={
+                  <FormView
+                    initialValues={{
+                      title: "John",
+                      date: "2021-01-01",
+                      userId: "2",
+                    }}
+                  />
+                }
+              />
+              <Route
+                path="/form-init-props"
+                element={
+                  <FormView
+                    viaProps={true}
+                    initialValues={{
+                      title: "John",
+                      date: "2021-01-01",
+                      userId: "2",
+                    }}
+                  />
+                }
+              />
               <Route
                 path="/"
                 element={

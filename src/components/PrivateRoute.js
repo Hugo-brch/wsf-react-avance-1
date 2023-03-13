@@ -14,8 +14,9 @@ export default function PrivateRoute({ children }) {
           to: pathname,
         },
       });
-  }, [user]);
+  }, [user, pathname, navigate]);
 
+  // eslint-disable-next-line eqeqeq
   if (user == false) return <></>;
   return children;
 }
