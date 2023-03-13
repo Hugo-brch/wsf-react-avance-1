@@ -1,12 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext(
-    localStorage.getItem("theme") || "light"
+  localStorage.getItem("theme") || "light"
 );
 
 export default function ThemeProvider({ children }) {
-    //-------gestion theme
-  
+  /**
+   * Gestion du theme
+   */
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   function toggleTheme() {
@@ -18,10 +19,9 @@ export default function ThemeProvider({ children }) {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        {children}
+      {children}
     </ThemeContext.Provider>
-  )
+  );
 }

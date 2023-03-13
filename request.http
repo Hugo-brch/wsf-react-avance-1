@@ -23,6 +23,4 @@ Content-Type: application/json
 GET http://localhost:5000/notifications
 ###
 GET http://localhost:5000/notifications/1
-
-
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9saXZpZXJAbWFpbC5jb20iLCJpYXQiOjE2Nzc1NzQyODgsImV4cCI6MTY3NzU3Nzg4OCwic3ViIjoiMSJ9.GHH_K8zdrgiBTQ0ePkdT8tKfxl4079xTZMhHbdPhOe4

@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function ButtonView() {
-  const{ theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const buttons = [
     {
       color: "red",

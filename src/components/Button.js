@@ -8,9 +8,11 @@ function Button({
   title,
   onClick,
   component: Component = "button",
+  children,
   ...rest
 }) {
-  const{ theme } = useContext(ThemeContext);
+
+  const { theme } = useContext(ThemeContext);
   const style = {
     backgroundColor: color ?? (theme === "light" ? "grey" : "white"),
     color: theme === "light" ? "white" : "black",
@@ -34,7 +36,7 @@ function Button({
 
   return (
     <Component style={style} onClick={onClick} {...rest}>
-      {title}
+      {children || title}
     </Component>
   );
 }

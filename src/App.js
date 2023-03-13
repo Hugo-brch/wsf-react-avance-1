@@ -1,24 +1,16 @@
 import "./App.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ButtonView from "./views/ButtonView";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
 import NotificationView from "./views/NotificationView";
 import { ThemeContext } from "./contexts/ThemeContext";
-import NotificationProvider from "./contexts/NotificationContext.";
+import NotificationProvider from "./contexts/NotificationContext";
+import AuthProvider from "./contexts/AuthContext";
+import SecurityView from "./views/SecurityView";
 
 function App() {
-
-
-  //Contexttheme
-
-  const {theme} = useContext(ThemeContext);
-
-
-
-
-
-
+  const { theme } = useContext(ThemeContext);
   return (
     <div
       className="App"
@@ -27,17 +19,20 @@ function App() {
         color: theme === "light" ? "black" : "white",
       }}
     >
-        <BrowserRouter>
-        <NotificationProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <NotificationProvider>
             <Routes>
-              <Route path="/" element={<AppLayout/>}>
+              <Route path="/security" element={<SecurityView />} />
+              <Route path="/" element={<AppLayout />}>
                 <Route path="/" element={<h1>Coucou Home</h1>} />
-                <Route path="/buttons" element={<ButtonView/>}/>
-                <Route path="/notifications"element={<NotificationView />}/>
+                <Route path="/buttons" element={<ButtonView />} />
+                <Route path="/notifications" element={<NotificationView />} />
               </Route>
             </Routes>
           </NotificationProvider>
-        </BrowserRouter>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }
