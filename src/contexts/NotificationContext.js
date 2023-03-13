@@ -18,6 +18,12 @@ export default function NotificationProvider({ children }) {
     );
   }
 
+  function getNotif(id) {
+    return fetch("http://localhost:5000/notifications_/" + id)
+      .then((response) => response.status === 200 && response.json())
+      .catch((e) => console.error(e));
+  }
+
   useEffect(() => {
     fetch("http://localhost:5000/notifications")
       .then((response) => response.json())
@@ -54,7 +60,13 @@ export default function NotificationProvider({ children }) {
   }
   return (
     <NotificationContext.Provider
-      value={{ notifs, addNotif, deleteNotif, notifCount: notifs.length }}
+      value={{
+        notifs,
+        addNotif,
+        deleteNotif,
+        getNotif,
+        notifCount: notifs.length,
+      }}
     >
       {children}
     </NotificationContext.Provider>

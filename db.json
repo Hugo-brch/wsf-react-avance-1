@@ -15,6 +15,18 @@
       "title": "qsdfgh",
       "date": "2023-03-16",
       "id": 5
+    },
+    {
+      "title": "test connected",
+      "date": "2023-03-15",
+      "userId": "",
+      "id": 6
+    },
+    {
+      "title": "test connected 2",
+      "date": "2023-03-15",
+      "userId": "3",
+      "id": 7
     }
   ],
   "users": [
@@ -31,6 +43,13 @@
       "name": "Olivier",
       "surname": "Deme",
       "id": 2
+    },
+    {
+      "email": "karl@test.com",
+      "password": "$2a$10$FqHgHPGkycKkatv/CTf2AOI2IviqQBJLGEh4leC00zT7wQX57W1lG",
+      "surname": "karl",
+      "name": "karl",
+      "id": 3
     }
   ]
 }
