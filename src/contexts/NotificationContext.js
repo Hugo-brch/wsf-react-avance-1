@@ -9,7 +9,7 @@ export default function NotificationProvider({ children }) {
   const [notifs, setNotifs] = useState([]);
 
   function deleteNotif() {
-    fetch("http://localhost:5000/notifications/" + this.id, {
+    fetch("/notifications/" + this.id, {
       method: "DELETE",
     }).then(
       (response) =>
@@ -19,13 +19,13 @@ export default function NotificationProvider({ children }) {
   }
 
   function getNotif(id) {
-    return fetch("http://localhost:5000/notifications_/" + id)
+    return fetch("/notifications_/" + id)
       .then((response) => response.status === 200 && response.json())
       .catch((e) => console.error(e));
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/notifications")
+    fetch("/notifications")
       .then((response) => response.json())
       .then(setNotifs);
     /*.then((data) => setNotifs(data));*/
