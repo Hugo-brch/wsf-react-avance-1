@@ -40,6 +40,22 @@ export default function AuthProvider({ children }) {
       throw new Error("login faild " + response.status);
     }
   }
+  async function register(surname, name, email, password) {
+    const response = await fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ surname, name, email, password }),
+    });
+    if (response.status === 201) {
+      const data = await response.json();
+      localStorage.setItem("token", data.accessToken);
+      setUserFromToken(data.accessToken);
+    } else {
+      throw new Error("login faild " + response.status);
+    }
+  }
 
   async function logout() {
     localStorage.removeItem("token");
@@ -47,7 +63,7 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

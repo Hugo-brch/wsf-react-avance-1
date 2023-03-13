@@ -3,10 +3,16 @@ import { NotificationContext } from "../../contexts/NotificationContext";
 import Button from "../Button";
 
 export default function Item({ notif }) {
-  const { deleteNotif } = useContext(NotificationContext);
+  const { deleteNotif, getNotif } = useContext(NotificationContext);
   return (
     <li>
-      <span>{notif.title}</span>
+      <span
+        onClick={() =>
+          getNotif(notif.id).then((data) => alert(JSON.stringify(data)))
+        }
+      >
+        {notif.title}
+      </span>
       <span>{notif.date}</span>
       <span>
         {/*<Button theme={theme} title="Delete" onClick={() => handleDelete(notif)} />*/}
